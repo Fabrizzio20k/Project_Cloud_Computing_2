@@ -65,6 +65,10 @@ export default function HomePage() {
         <h1>Listar Usuarios</h1>
       </Link>
 
+      <Link href="/extract">
+        <h1>Extraer texto de documento</h1>
+      </Link>
+
       <form onSubmit={enviarDatos}>
         <input type="text" name="nombre" onChange={handleChange} placeholder="Nombre" />
         <input type="text" name="apellido" onChange={handleChange} placeholder="Apellido" />

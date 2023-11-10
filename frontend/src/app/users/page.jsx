@@ -25,6 +25,7 @@ export default function UsersPage() {
                 <h2>Home</h2>
             </Link>
             <h1>Usuarios</h1>
+            <br/>
             {users.map(user => (
                 <div key={user.user_id} className="user-card">
                     <div className="user-info">
@@ -33,7 +34,7 @@ export default function UsersPage() {
                         <p>{user.edad} años</p>
                     </div>
                     <div className="user-image">
-                        <Image src={user.foto} alt="Foto de perfil" width={500} height={350} priority={true}/>
+                        <Image src={user.foto} alt="Foto de perfil" width={500} height={350}/>
                     </div>
                 </div>
             ))}
