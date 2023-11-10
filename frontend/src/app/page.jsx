@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { createUser } from '@/functions/users';
 import "./styles.css";
+import Link from 'next/link';
 
 export default function HomePage() {
 
@@ -14,6 +15,9 @@ export default function HomePage() {
     foto: null,
     username: ''
   });
+
+  const [success, setSuccess] = useState(false);
+  const [sended, setSended] = useState(false);
 
   const handleChange = (e) => {
     setUser({
@@ -40,18 +44,39 @@ export default function HomePage() {
     };
 
     const response = await createUser(data, user);
-    console.log(response);
+    setSended(true);
+
+    if(response) {
+      if(response.status === 200) {
+        setSuccess(true);
+      }
+      else {
+        setSuccess(false);
+      }
+    }
+    else {
+      setSuccess(false);
+    }
   }
 
   return (
-    <form onSubmit={enviarDatos}>
-      <input type="text" name="nombre" onChange={handleChange} placeholder="Nombre" />
-      <input type="text" name="apellido" onChange={handleChange} placeholder="Apellido" />
-      <input type="number" name="edad" onChange={handleChange} placeholder="Edad" />
-      <input type="date" name="nacimiento" onChange={handleChange} placeholder="Fecha de Nacimiento" />
-      <input type="file" name="foto" onChange={handleFileChange} placeholder="Foto" />
-      <input type="text" name="username" onChange={handleChange} placeholder="Nombre de Usuario" />
-      <button type="submit">Enviar</button>
-    </form>
+    <div className="App">
+      <Link href="/users">
+        <h1>Listar Usuarios</h1>
+      </Link>
+
+      <form onSubmit={enviarDatos}>
+        <input type="text" name="nombre" onChange={handleChange} placeholder="Nombre" />
+        <input type="text" name="apellido" onChange={handleChange} placeholder="Apellido" />
+        <input type="number" name="edad" onChange={handleChange} placeholder="Edad" />
+        <input type="date" name="nacimiento" onChange={handleChange} placeholder="Fecha de Nacimiento" />
+        <input type="file" name="foto" onChange={handleFileChange} placeholder="Foto" />
+        <input type="text" name="username" onChange={handleChange} placeholder="Nombre de Usuario" />
+        <button type="submit">Enviar</button>
+      </form>
+
+      <h3 className={`${success ? "success":"fail"} ${sended ? "":"non-visible"}`}>{success ? "Exito al registrar":"Fallo al registrar"}</h3>
+      
+    </div>
   );
 }
