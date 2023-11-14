@@ -20,10 +20,7 @@ export default function UsersPage() {
     
 
     return (
-        <div className="App">
-            <Link href="/">
-                <h2>Home</h2>
-            </Link>
+        <div className="List">
             <h1>Usuarios</h1>
             <br/>
             {users.map(user => (

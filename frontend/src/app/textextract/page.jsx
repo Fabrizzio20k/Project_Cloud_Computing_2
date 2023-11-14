@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { TEXTEXTRACT_URL, GET_URL } from '@/functions/routes';
-import Link from 'next/link';
 import './styles.css';
 
 export default function ExtractPage() {
@@ -48,9 +47,6 @@ export default function ExtractPage() {
 
     return (
         <div className="App">
-            <Link href={'/'}>
-                <h1>Home</h1>
-            </Link>
             
             <h1>Extract</h1>
             <form onSubmit={handleSubmit}>

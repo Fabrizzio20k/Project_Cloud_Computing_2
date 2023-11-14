@@ -1,0 +1,25 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    background-color: #333;
+    align-items: center;
+  }
+  
+.navbar a {
+    color: #fff;
+    text-decoration: none;
+    margin-right: 1rem;
+}
+  
+.navbar a.logo {
+    margin-right: auto;
+}
+  
+.navbar a.active {
+    color: green;
+}
+
+.logo{
+    cursor: pointer;
+}
