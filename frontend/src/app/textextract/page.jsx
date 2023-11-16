@@ -10,11 +10,19 @@ export default function ExtractPage() {
     const [users, setUsers] = useState([]);
     const [file, setFile] = useState(null);
     const [text, setText] = useState('');
+    const [fileName, setFileName] = useState('Seleccionar archivo');
+
+    const handleFileChange = e => {
+        setFile(e.target.files[0]);
+        setFileName(e.target.files[0].name);
+    };
 
     useEffect(() => {
         axios.get(GET_URL)
             .then(res => {
                 setUsers(res.data.body);
+                setUserId(res.data.body[0].user_id);
+                console.log(res.data.body);
             })
             .catch(err => console.error(err));
     }, []);
@@ -49,7 +57,7 @@ export default function ExtractPage() {
         <div className="App">
             
             <h1>Extract</h1>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className='form-extract'>
                 <select
                     value={userId}
                     onChange={e => setUserId(e.target.value)}
@@ -62,9 +70,14 @@ export default function ExtractPage() {
                 </select>
                 <input
                     type="file"
-                    onChange={e => setFile(e.target.files[0])}
+                    id="fileInput"
+                    onChange={handleFileChange}
+                    style={{ display: 'none' }}
                 />
-                <button type="submit">Submit</button>
+                <label htmlFor="fileInput" className="custom-file-upload">
+                    {fileName}
+                </label>
+                <button type="submit" className='btn-submit' disabled={!file}>Submit</button>
             </form>
 
             {text && (
@@ -74,6 +87,20 @@ export default function ExtractPage() {
                     <button className='copy-button' onClick={copyToClipboard}>Copiar al portapapeles</button>
                 </div>
             )}
+
+            <div className='history'>
+                <h2>Historial de extracciones</h2>
+                <p>En esta sección se mostrará el historial de extracciones del usuario seleccionado.</p>
+
+                <div className='history-content'>
+                    {users.find(user => user.user_id === userId)?.extract_history?.map((history, index) => (
+                        <div className='history-item' key={index}>
+                            <h2>{history.timestamp}</h2>
+                            <p>{history.text}</p>
+                        </div>
+                    ))}
+                </div>
+            </div>
         </div>
     );
 }

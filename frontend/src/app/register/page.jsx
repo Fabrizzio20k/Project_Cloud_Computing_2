@@ -61,7 +61,7 @@ export default function HomePage() {
 
   return (
     <div className="App">
-
+      <h1>Registro de usuarios</h1>
       <form onSubmit={enviarDatos}>
         <input type="text" name="nombre" onChange={handleChange} placeholder="Nombre" />
         <input type="text" name="apellido" onChange={handleChange} placeholder="Apellido" />
