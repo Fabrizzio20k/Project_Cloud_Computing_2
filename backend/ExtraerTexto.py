@@ -2,6 +2,7 @@ import boto3
 import json
 import base64
 from botocore.exceptions import NoCredentialsError
+from datetime import datetime
 
 def lambda_handler(event, context):
     client = boto3.client('textract')
@@ -21,12 +22,17 @@ def lambda_handler(event, context):
     dynamodb = boto3.resource('dynamodb')
     table = dynamodb.Table('proyectcloud_extracttext')
 
+    # Obtener la fecha y hora actual
+    now = datetime.now()
+    
     table.put_item(
        Item={
             'user_id': event['username'],
+            'timestamp': now.strftime("%Y-%m-%d %H:%M:%S"),
             'text': text_detected
         }
     )
+
 
     return {
         'statusCode': 200,
