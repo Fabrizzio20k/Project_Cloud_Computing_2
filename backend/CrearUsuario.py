@@ -6,6 +6,9 @@ from botocore.exceptions import NoCredentialsError
 s3 = boto3.client('s3')
 dynamodb = boto3.resource('dynamodb')
 
+# Create an SNS client
+sns = boto3.client('sns')
+
 def lambda_handler(event, context):
     username = event['username']
     bucket_name = 'cloudprojectfinal2k23'
@@ -13,27 +16,37 @@ def lambda_handler(event, context):
     table = dynamodb.Table('proyectcloud_users')
 
     try:
-        # Si hay una foto, guárdala en S3
+        # If there is a photo, save it in S3
         if 'foto' in event and event['foto'] is not None:
             foto = event['foto']
-            # Elimina el encabezado de la cadena base64
+            # Remove the header from the base64 string
             base64_string = foto.split(",")[1]
-            # Decodifica la cadena base64
+            # Decode the base64 string
             foto_data = base64.b64decode(base64_string)
             s3.put_object(Bucket=bucket_name, Key=folder + 'foto_perfil.jpg', Body=foto_data)
             print("Successfully uploaded photo to S3")
 
-        table.put_item(
-           Item={
-                'user_id': username,
-                'nombre': event['nombre'],
-                'apellido': event['apellido'],
-                'edad': event['edad'],
-                'nacimiento': event['nacimiento'],
-                'foto': f's3://{bucket_name}/{folder}foto_perfil.jpg'
-            }
-        )
+        user_data = {
+            'user_id': username,
+            'nombre': event['nombre'],
+            'apellido': event['apellido'],
+            'edad': event['edad'],
+            'nacimiento': event['nacimiento'],
+            'foto': f's3://{bucket_name}/{folder}foto_perfil.jpg'
+        }
+
+        table.put_item(Item=user_data)
         print("Successfully inserted the item in DynamoDB")
+
+        # Publish a message to the SNS topic
+        message = json.dumps(user_data, indent=4)  # Pretty print the user's data
+        response = sns.publish(
+            TopicArn='arn:aws:sns:us-east-1:147071116304:ProyectoCloud_Registros',    
+            Message=message,
+            Subject='New User Notification'
+        )
+        print("Successfully published message to SNS topic")
+
     except NoCredentialsError:
         print("Credentials not available")
 
