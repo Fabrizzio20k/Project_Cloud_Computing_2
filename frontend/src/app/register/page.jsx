@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import { createUser } from '@/functions/users';
 import "./styles.css";
-import Link from 'next/link';
 
 export default function HomePage() {
 

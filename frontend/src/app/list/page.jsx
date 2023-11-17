@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { GET_URL } from "@/functions/routes";
@@ -14,7 +13,6 @@ export default function UsersPage() {
       axios.get(GET_URL)
         .then(res => {
           setUsers(res.data.body);
-          console.log(res.data.body);
         })
         .catch(err => console.error(err));
     }, []);
@@ -34,7 +32,7 @@ export default function UsersPage() {
                 <h4>{user.edad} años</h4>
               </div>
               <div className="card-image">
-                <Image src={user.foto} width={400} height={300} alt="user-img"/>
+                <Image src={user.foto} width={400} height={300} alt="user-img" priority={true} className="img-user"/>
               </div>
             </div>
           ))}

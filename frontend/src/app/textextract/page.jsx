@@ -22,7 +22,6 @@ export default function ExtractPage() {
             .then(res => {
                 setUsers(res.data.body);
                 setUserId(res.data.body[0].user_id);
-                console.log(res.data.body);
             })
             .catch(err => console.error(err));
     }, []);
@@ -40,7 +39,7 @@ export default function ExtractPage() {
             axios.post(TEXTEXTRACT_URL, {
                 username: userId,
                 image: reader.result
-            })
+            }, { headers: { 'Content-Type': 'application/json' } })
             .then(res => {
                 setText(res.data.body);
             })
