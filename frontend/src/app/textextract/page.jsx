@@ -53,53 +53,58 @@ export default function ExtractPage() {
     };
 
     return (
-        <div className="App">
+        <>
+            <div className="extract-tittle">
+                <h1>Extract Text Here</h1>
+            </div>
+
+            <div className='extract'>
             
-            <h1>Extract</h1>
-            <form onSubmit={handleSubmit} className='form-extract'>
-                <select
-                    value={userId}
-                    onChange={e => setUserId(e.target.value)}
-                >
-                    {users.map(user => (
-                        <option key={user.user_id} value={user.user_id}>
-                            {user.user_id}
-                        </option>
-                    ))}
-                </select>
-                <input
-                    type="file"
-                    id="fileInput"
-                    onChange={handleFileChange}
-                    style={{ display: 'none' }}
-                />
-                <label htmlFor="fileInput" className="custom-file-upload">
-                    {fileName}
-                </label>
-                <button type="submit" className='btn-submit' disabled={!file}>Submit</button>
-            </form>
+                <form onSubmit={handleSubmit} className='form-extract'>
+                    <select
+                        value={userId}
+                        onChange={e => setUserId(e.target.value)}
+                    >
+                        {users.map(user => (
+                            <option key={user.user_id} value={user.user_id}>
+                                {user.user_id}
+                            </option>
+                        ))}
+                    </select>
+                    <input
+                        type="file"
+                        id="fileInput"
+                        onChange={handleFileChange}
+                        style={{ display: 'none' }}
+                    />
+                    <label htmlFor="fileInput" className="custom-file-upload">
+                        {fileName}
+                    </label>
+                    <button type="submit" className='btn-submit' disabled={!file}>Submit</button>
+                </form>
 
-            {text && (
-                <div className='text-content'>
-                    <h2>El texto obtenido es el siguiente:</h2>
-                    <p>{text}</p>
-                    <button className='copy-button' onClick={copyToClipboard}>Copiar al portapapeles</button>
-                </div>
-            )}
+                {text && (
+                    <div className='text-content'>
+                        <h2>El texto obtenido es el siguiente:</h2>
+                        <p>{text}</p>
+                        <button className='copy-button' onClick={copyToClipboard}>Copiar al portapapeles</button>
+                    </div>
+                )}
 
-            <div className='history'>
-                <h2>Historial de extracciones</h2>
-                <p>En esta sección se mostrará el historial de extracciones del usuario seleccionado.</p>
+                <div className='history'>
+                    <h2>Historial de extracciones</h2>
+                    <p>En esta sección se mostrará el historial de extracciones del usuario seleccionado.</p>
 
-                <div className='history-content'>
-                    {users.find(user => user.user_id === userId)?.extract_history?.map((history, index) => (
-                        <div className='history-item' key={index}>
-                            <h2>{history.timestamp}</h2>
-                            <p>{history.text}</p>
-                        </div>
-                    ))}
+                    <div className='history-content'>
+                        {users.find(user => user.user_id === userId)?.extract_history?.map((history, index) => (
+                            <div className='history-item' key={index}>
+                                <h2>{history.timestamp}</h2>
+                                <p>{history.text}</p>
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </div>
-        </div>
+        </>
     );
 }

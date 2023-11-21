@@ -2,11 +2,11 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation'
 import styles from './Navbar.module.css'; // Asume que tienes un archivo de estilos CSS en el mismo directorio
 
 export default function Navbar() {
-  const router = useRouter();
+    const pathname = usePathname()
 
   return (
     <nav className={styles.navbar}>
@@ -17,13 +17,13 @@ export default function Navbar() {
             <a className={styles.logo}>CloudText Magic</a>
         </Link>
         <Link legacyBehavior href="/register">
-            <a className={router.pathname === '/register' ? styles.active : ''}>Registrar</a>
+            <a className={pathname === '/register' ? styles.active : ''}>Registrar</a>
         </Link>
         <Link legacyBehavior href="/list">
-            <a className={router.pathname === '/list' ? styles.active : ''}>Listar</a>
+            <a className={pathname === '/list' ? styles.active : ''}>Listar</a>
         </Link>
         <Link legacyBehavior href="/textextract">
-            <a className={router.pathname === '/textextract' ? styles.active : ''}>Textextract</a>
+            <a className={pathname === '/textextract' ? styles.active : ''}>Textextract</a>
         </Link>
     </nav>
   );

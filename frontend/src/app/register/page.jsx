@@ -59,9 +59,9 @@ export default function HomePage() {
   }
 
   return (
-    <div className="App">
+    <div className="register">
       <h1>Registro de usuarios</h1>
-      <form onSubmit={enviarDatos}>
+      <form className='form-register' onSubmit={enviarDatos}>
         <input type="text" name="nombre" onChange={handleChange} placeholder="Nombre" />
         <input type="text" name="apellido" onChange={handleChange} placeholder="Apellido" />
         <input type="number" name="edad" onChange={handleChange} placeholder="Edad" />

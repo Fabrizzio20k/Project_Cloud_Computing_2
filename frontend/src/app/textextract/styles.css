@@ -1,56 +1,47 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
-.App {
-    font-family: 'Poppins', sans-serif;
-    padding: 20px;
+.extract-tittle{
     display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
-    width: 80%;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+}
+
+.extract-tittle h1{
     color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 2em;
+    margin: 20px 20px;
+    padding: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    border-bottom: 1px solid #ddd;
+    width: 100%;
+    padding-bottom: 20px;
+}
+
+.extract{
+    display: block;
+    width: 95%;
+    margin: auto;
 }
 
 .form-extract{
+    margin: auto;
     background-color: rgb(0, 41, 65);
-    width: 100%;
+    width: 80%;
     border-radius: 8px;
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
     display: flex;
-    flex-direction: row;
     align-items: center;
     justify-content: center;
     border: 0.2em #003557 solid;
     color: white;
 }
 
-.form-extract select{
-    font-family: 'Poppins', sans-serif;
-    width: 20%;
-    padding: 10px;
-    margin: 10px 0;
-    border-radius: 4px;
-    border: 1px solid #ddd;
-    font-size: 1em;
-    background-color: #001e30;
-    color: white;
-    margin: 20px;
-}
-
-.form-extract input[type=file] {
-    font-family: 'Poppins', sans-serif;
-    width: 20%;
-    padding: 10px;
-    margin: 10px 0;
-    border-radius: 4px;
-    border: 1px solid #ddd;
-    font-size: 1em;
-    background-color: #001e30;
-    color: white;
-    margin: 20px;
-    align-items: center;
-}
-
+.form-extract select,
+.form-extract input[type=file],
 .form-extract .custom-file-upload {
     font-family: 'Poppins', sans-serif;
     width: 20%;
@@ -63,7 +54,6 @@
     color: white;
     margin: 20px;
     align-items: center;
-    cursor: pointer;
 }
 
 .btn-submit {
@@ -114,6 +104,8 @@
 }
 
 .history{
+    margin: auto;
+    width: 75%;
     margin-top: 20px;
     padding: 20px;
     border-radius: 15px;
@@ -124,15 +116,39 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    overflow: hidden;
 }
 
 .history-item{
+    margin: auto;
+    width: 90%; /* Add this line */
+    height: auto;
     margin-top: 10px;
     padding: 5px 10px;
-    border: none;
-    border-radius: 5px;
-    background-color: rgb(0, 107, 32);
+    background-color: #0086a1;
     color: white;
-    cursor: pointer;
     transition: background-color 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+
+/* Responsive styles */
+@media screen and (max-width: 768px) {
+    .form-extract{
+        flex-direction: column;
+        width: 90%;
+    }
+
+    .form-extract select,
+    .form-extract input[type=file],
+    .form-extract .custom-file-upload {
+        width: 80%;
+    }
+
+    .history{
+        width: 90%;
+    }
 }

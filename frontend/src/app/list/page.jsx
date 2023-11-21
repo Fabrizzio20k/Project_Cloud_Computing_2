@@ -18,9 +18,11 @@ export default function UsersPage() {
     }, []);
     
     return (
-      <div className="List">
-        <h1>Lista de usuarios</h1>
-        <br/>
+        <>
+        <div className="titulo">
+          <h1>Lista de usuarios</h1>
+        </div>
+
         <div className="users">
           {users.map((user, index) => (
             <div className="card" key={index}>
@@ -37,7 +39,7 @@ export default function UsersPage() {
             </div>
           ))}
         </div>
-      </div>
+        </>
     );
   }
   

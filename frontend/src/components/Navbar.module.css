@@ -1,11 +1,3 @@
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    padding: 1rem;
-    background-color: #333;
-    align-items: center;
-  }
-  
 .navbar a {
     color: #fff;
     text-decoration: none;
@@ -17,9 +9,24 @@
 }
   
 .navbar a.active {
-    color: green;
+    color: rgb(114, 220, 255);
 }
 
 .logo{
     cursor: pointer;
+}
+
+
+@keyframes twinkling{
+    0%{background-position: 0 0}
+    100%{background-position: -9999px 5000px}
+}
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    background: #090a0f url(http://www.script-tutorials.com/demos/360/images/stars.png) repeat top center;
+    animation: twinkling 200s infinite linear;
+    align-items: center;
+    border-bottom: 1px solid #fff;
 }

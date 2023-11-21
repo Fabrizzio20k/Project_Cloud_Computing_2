@@ -11,13 +11,10 @@ export default function RootLayout({ children }) {
     return (
         <html>
             <body>
-                
-                <div id="root">
-                    <Navbar />
-                    <Background>
-                        {children}
-                    </Background>
-                </div>
+                <Navbar />
+                <Background>
+                    {children}
+                </Background>
             </body>
         </html>
     );
