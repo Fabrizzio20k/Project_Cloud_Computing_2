@@ -1,0 +1,44 @@
+.presentationPage {
+    width: 80%;
+    margin: auto;
+    text-align: center;
+}
+
+.imgPresentation {
+    width: 30%;
+    height: 30%;
+    margin: auto;
+}
+
+.title {
+    color: #ffffff;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.subtitle {
+    color: #ffffff;
+    font-size: 2rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.description {
+    color: whitesmoke;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+}
+
+.list {
+    list-style-type: disc;
+    list-style-position: inside;
+    text-align: left;
+    margin-bottom: 1rem;
+}
+
+.list li {
+    color: whitesmoke;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}

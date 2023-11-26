@@ -1,14 +1,31 @@
-import "./styles.css";
+import Image from 'next/image';
+import styles from './Page.module.css';
 
 export default function Page() {
     return (
-        <div className="presentation-page">
-            <h1>Proyecto final del curso de Cloud Computing</h1>
+        <div className={styles.presentationPage}>
+            <h1 className={styles.title}>Proyecto Final del Curso de Cloud Computing</h1>
 
-            <p>Este proyecto consiste en una aplicación web que permite a los usuarios registrarse, listar los usuarios existentes, usar el servicio
-                de reconocimiento de texto de Google Cloud Vision para extraer texto de imágenes, y ver el historial de extracciones de texto.</p>
+            <Image src="/prev.png" alt="Cloud Computing" width={500} height={500} className={styles.imgPresentation}/>
 
-            <h2>La aplicación está desarrollada con ReactJS para el frontend, y AWS Lambda (Python) para el backend</h2>
+            <p className={styles.description}>Este proyecto es una aplicación web innovadora que ofrece una variedad de funcionalidades. Los usuarios pueden:</p>
+
+            <ul className={styles.list}>
+                <li>Registrarse en la plataforma</li>
+                <li>Listar los usuarios existentes</li>
+                <li>Utilizar el servicio de reconocimiento de texto de Amazon Textract para extraer texto de imágenes</li>
+                <li>Ver el historial de extracciones de texto</li>
+            </ul>
+
+            <h2 className={styles.subtitle}>Tecnologías Utilizadas</h2>
+
+            <p className={styles.description}>La aplicación está desarrollada con las siguientes tecnologías:</p>
+
+            <ul className={styles.list}>
+                <li>ReactJS para el frontend</li>
+                <li>AWS Lambda (Python) para el backend</li>
+                <li>Otros servicios serverless de AWS</li>
+            </ul>
         </div>
     );
 }

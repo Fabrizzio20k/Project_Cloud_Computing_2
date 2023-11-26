@@ -1,32 +1,106 @@
-.navbar a {
-    color: #fff;
-    text-decoration: none;
-    margin-right: 1rem;
-}
-  
-.navbar a.logo {
-    margin-right: auto;
-}
-  
-.navbar a.active {
-    color: rgb(114, 220, 255);
+.navbar {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1rem;
+    background: #090a0f url(http://www.script-tutorials.com/demos/360/images/stars.png) repeat top center;
+    animation: twinkling 200s infinite linear;
+    border-bottom: 1px solid #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    align-items: center;
+    justify-content: space-between;
 }
 
 .logo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
 }
 
+.logo a{
+    color: #fff;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.logo a:hover{
+    color: rgb(114, 220, 255);
+}
+
+.menu{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu a{
+    margin-right: 1rem;
+    color: #fff;
+    text-decoration: none;
+}
+
+.menu a:hover{
+    color: rgb(114, 220, 255);
+}
+
+.menu a.active{
+    color: rgb(114, 220, 255);
+}
+
+.menuMobile{
+    display: none;
+    cursor: pointer;
+}
+
+.deactivate{
+    display: none !important;
+}
+
+.modMenu{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #090a0f url(http://www.script-tutorials.com/demos/360/images/stars.png) repeat top center;
+    animation: twinkling 200s infinite linear;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: none;
+}
+
+.modMenu.open {
+    display: flex;
+}
+
+.modMenu a{
+    margin: 1rem;
+    color: #fff;
+    text-decoration: none;
+    width: 100%;
+    background-color: none;
+    text-align: center;
+    padding: 1rem;
+}
+
+.modMenu a:hover{
+    color: rgb(114, 220, 255);
+    background-color: #0012245d;
+}
 
 @keyframes twinkling{
     0%{background-position: 0 0}
     100%{background-position: -9999px 5000px}
 }
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    padding: 1rem;
-    background: #090a0f url(http://www.script-tutorials.com/demos/360/images/stars.png) repeat top center;
-    animation: twinkling 200s infinite linear;
-    align-items: center;
-    border-bottom: 1px solid #fff;
+
+@media screen and (max-width: 768px){
+    .menuMobile{
+        display: block;
+        filter: brightness(0) invert(0.8);
+    }
+    .menu{
+        display: none;
+    }
 }
