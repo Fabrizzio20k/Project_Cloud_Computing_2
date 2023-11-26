@@ -4,7 +4,6 @@ import base64
 from botocore.exceptions import NoCredentialsError
 
 s3 = boto3.client('s3')
-dynamodb = boto3.resource('dynamodb')
 
 # Create an SNS client
 sns = boto3.client('sns')
@@ -13,7 +12,6 @@ def lambda_handler(event, context):
     username = event['username']
     bucket_name = 'cloudprojectfinal2k23'
     folder = f'{username}/'
-    table = dynamodb.Table('proyectcloud_users')
 
     try:
         # If there is a photo, save it in S3
@@ -34,9 +32,6 @@ def lambda_handler(event, context):
             'nacimiento': event['nacimiento'],
             'foto': f's3://{bucket_name}/{folder}foto_perfil.jpg'
         }
-
-        table.put_item(Item=user_data)
-        print("Successfully inserted the item in DynamoDB")
 
         # Publish a message to the SNS topic
         message = json.dumps(user_data, indent=4)  # Pretty print the user's data
